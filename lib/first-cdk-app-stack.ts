@@ -3,6 +3,7 @@ import { Construct } from 'constructs';
 import * as dynamodb from 'aws-cdk-lib/aws-dynamodb'
 import * as apigateway from 'aws-cdk-lib/aws-apigateway'
 import * as lambda from 'aws-cdk-lib/aws-lambda'
+import * as nodejs from 'aws-cdk-lib/aws-lambda-nodejs'
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import { LambdaRestApi } from 'aws-cdk-lib/aws-apigateway';
 
@@ -19,7 +20,7 @@ export class FirstCdkAppStack extends Stack {
     )
 
     //define lambda function and regeference function file
-    const lambda_backend = new NodejsFunction(this, "function", {
+    const lambda_backend = new nodejs.NodejsFunction(this, "function", {
       tracing: lambda.Tracing.ACTIVE,
       environment: {
         DYNAMODB: dynamodb_table.tableName
